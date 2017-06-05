@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-//import { fetchWeather } from '../actions/index';
+import { fetchApplications } from '../actions/index';
 
 class AppList extends Component {
 
@@ -15,8 +15,6 @@ class AppList extends Component {
             defaultSortOrder: 'desc'  // default sort order
         };
     }
-
-
 
     render() {
 
@@ -62,10 +60,4 @@ function mapStateToProps(state) {
     };
 }
 
-
-
-
-
-
-//promot Booklist from a componen to a container - It needs to n
 export default connect(mapStateToProps)(AppList)
