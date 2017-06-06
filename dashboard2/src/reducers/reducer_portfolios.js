@@ -1,5 +1,4 @@
 export default function () {
-
         return [
                 { title: 'Kiosk 1', pages: 101 },
                 { title: 'Kiosk 2', pages: 1 },
