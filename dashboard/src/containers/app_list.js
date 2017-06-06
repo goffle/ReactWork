@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
-import { fetchApplications } from '../actions/index';
+import { fetchStatus } from '../actions/index';
 
 class AppList extends Component {
 
@@ -14,23 +14,46 @@ class AppList extends Component {
             defaultSortName: 'Status',  // default sort column name
             defaultSortOrder: 'desc'  // default sort order
         };
+
+        this.state = { lastUpdate: '' };
+        let timer = setInterval(() => this.updateStatus(), 5000);
+    }
+
+    componentDidMount() {
+        this.updateStatus();
+    }
+
+    updateStatus() {
+        this.state.lastUpdate = new Date().toString();
+
+        if (this.props.apps) {
+            this.props.apps.forEach(app => {
+                this.props.fetchStatus(app.DeviceId)
+            });
+        }
     }
 
     render() {
-
+        const ar = Array.from(this.props.apps).map(([key, value]) => (value));
         return (
-            <BootstrapTable data={this.props.apps} options={this.options} trClassName={trClassFormat} search={ true } multiColumnSearch={ true }>
-                <TableHeaderColumn dataField="DeviceName" isKey dataAlign="center" dataSort>DeviceName</TableHeaderColumn>
-                <TableHeaderColumn dataField="ApplicationVersion" dataSort>ApplicationVersion</TableHeaderColumn>
-                <TableHeaderColumn dataField="Project" dataAlign="center" dataSort>Project</TableHeaderColumn>
-                <TableHeaderColumn dataField="Connexion" dataAlign="center" dataSort>Connexion</TableHeaderColumn>
-                <TableHeaderColumn dataField="Status" dataSort sortFunc={revertSortFunc} dataAlign="center">Status</TableHeaderColumn>
-                <TableHeaderColumn dataField="UpTime" dataAlign="center" dataSort>UpTime</TableHeaderColumn>
-                <TableHeaderColumn dataField="NumberOfOutage" dataAlign="center" dataSort>NumberOfOutage</TableHeaderColumn>
-            </BootstrapTable>
-        )
+            <div>
+                <h3> Last Update : {this.state.lastUpdate}</h3>
+                <BootstrapTable data={ar} exportCSV options={this.options} trClassName={trClassFormat} search={true} multiColumnSearch={true}>
+                    <TableHeaderColumn dataField="DeviceName" isKey dataAlign="center" dataSort>DeviceName</TableHeaderColumn>
+                    <TableHeaderColumn dataField="ApplicationVersion" dataAlign="center" dataSort>ApplicationVersion</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Project" dataAlign="center" dataSort>Project</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Status" dataSort sortFunc={revertSortFunc} dataAlign="center">Status</TableHeaderColumn>
+                    <TableHeaderColumn dataField="Connexion" dataAlign="center" dataSort>Connexion</TableHeaderColumn>
+                    <TableHeaderColumn dataField="UpTime" dataAlign="center" dataSort>UpTime</TableHeaderColumn>
+                    <TableHeaderColumn dataField="NumberOfOutage" dataAlign="center" dataSort>NumberOfOutage</TableHeaderColumn>
+                </BootstrapTable>
+            </div>
+        );
     }
 }
+
+
+
 
 function trClassFormat(rowData, rIndex) {
 
@@ -38,14 +61,14 @@ function trClassFormat(rowData, rIndex) {
         return 'mediumline';
     } else if (rowData.Status === "OFF") {
         return 'offline';
-    } else {
+    } else if (rowData.Status === "ON") {
         return 'online';
     }
-
+    return '';
 }
 
 function revertSortFunc(a, b, order) {   // order is desc or asc
-    const v = {'OFF' : 1 , '??' : 2, 'ON' : 3}
+    const v = { 'OFF': 1, '??': 2, 'ON': 3 }
     if (order === 'desc') {
         return v[a.Status] - v[b.Status];
     } else {
@@ -56,8 +79,12 @@ function revertSortFunc(a, b, order) {   // order is desc or asc
 
 function mapStateToProps(state) {
     return {
-        apps: state.apps
+        apps: state.applications
     };
 }
 
-export default connect(mapStateToProps)(AppList)
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({ fetchStatus }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppList)

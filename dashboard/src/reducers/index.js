@@ -4,7 +4,7 @@ import AppsReducer from './reducer_applications';
 
 
 const rootReducer = combineReducers({
-  apps : AppsReducer
+  applications : AppsReducer
 });
 
 export default rootReducer;
