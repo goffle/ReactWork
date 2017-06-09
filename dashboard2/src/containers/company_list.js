@@ -3,24 +3,14 @@ import { connect } from 'react-redux';
 import { Card, CardText, CardTitle, CardMedia } from 'material-ui/Card';
 
 
+//http://react-dnd.github.io/react-dnd/
+
 class CompanyList extends Component {
 
     constructor(props) {
         super(props);
         this.state = { lastUpdate: '' };
     }
-
-    /*renderList() {
-
-        return this.props.companies.map((company) => {
-            return (
-
-               
-
-               
-            );
-        });
-    }*/
 
     selectCompany(company) {
         console.log("Company selected : " + company.name)

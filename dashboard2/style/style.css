@@ -1,26 +1,15 @@
-.online
-{
-    background-color: #27ae60;
-}
-
-.offline
-{
-   background-color: #ff6f6f; 
-}
-
-.mediumline
-{
-   background-color: #F9CB9C; 
-}
-
-.react-bs-table-container
-{
-    padding-top: 100px;
-}
-
-
 .title
 {
         text-align: center;
         padding-top: 30px;
+        color: white;
+}
+
+.card
+{
+        margin-bottom : 16px;
+        margin-top : 16px;
+        margin-left : 16px;
+        margin-right : 16px;
+        cursor: pointer
 }

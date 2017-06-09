@@ -13,10 +13,9 @@ class PortfolioList extends Component {
     }
 
     renderList() {
-
         return this.props.portfolio.map((business) => {
             return (
-                <div key={business.title} style={{marginBottom: 32 +'px', cursor: 'pointer'}} onClick={() => this.selectPortfolio(business.title)}>
+                <div className="card" key={business.title} onClick={() => this.selectPortfolio(business.title)}>
                     <Card >
                         <CardTitle title={business.title} subtitle="Card subtitle" />
                         <CardText>
