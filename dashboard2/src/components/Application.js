@@ -1,23 +1,20 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import styles from '../../style/Application.css'
 
 import injectTapEventPlugin from 'react-tap-event-plugin'
-
+injectTapEventPlugin();
 //UI
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
-
-import TitleBar from './TitleBar'
-
-injectTapEventPlugin();
-
-import PortfolioList from '../containers/portfolio_list'
-import CompanyList from '../containers/company_list'
+import AppBar from './AppBar'
+import Portfolios from '../containers/Portfolios'
+import Portfolio from '../components/Portfolio'
 
 
 
@@ -29,21 +26,18 @@ class Application extends Component {
     render() {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-                <div className='root'>
-                    <TitleBar />
-                    <div className='content'>
-                        <CompanyList />
+                <BrowserRouter>
+                    <div className='root'>
+                        <AppBar />
+                        <Switch>
+                            <Route path="/portfolio" component={Portfolio} />
+                            <Route path="/" component={Portfolios} />
+                        </Switch>
                     </div>
-                </div>
+                </BrowserRouter>
             </MuiThemeProvider>
         )
     }
 }
-/*
-Application.propTypes = {
-    //children: PropTypes.object.isRequired,
-    bbox: React.PropTypes.arrayOf(React.PropTypes.number),
-};
-*/
 
 export default Application

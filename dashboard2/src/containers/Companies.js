@@ -5,7 +5,7 @@ import { Card, CardText, CardTitle, CardMedia } from 'material-ui/Card';
 
 //http://react-dnd.github.io/react-dnd/
 
-class CompanyList extends Component {
+class Companies extends Component {
 
     constructor(props) {
         super(props);
@@ -68,4 +68,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(CompanyList)
+export default connect(mapStateToProps)(Companies)

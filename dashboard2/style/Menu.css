@@ -20,7 +20,7 @@
     padding: 5px;
     text-align: left;
     text-decoration: none;
-    color: #4498c0;
+    color: #ffffff;
 }
 .link:visited {
     text-decoration:none;
@@ -59,7 +59,7 @@ a:link {
 }
 
 .active .icon {
-    fill: #1675aa;
+    fill: #ff0000;
     filter: none;
     -webkit-filter: none;
     box-shadow: 0 2px rgba(0,0,0,.1);

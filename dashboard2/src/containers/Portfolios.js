@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-
-
+import { Link } from 'react-router-dom';
 import { Card, CardText, CardTitle } from 'material-ui/Card';
 
 
-class PortfolioList extends Component {
+class Portfolios extends Component {
 
     constructor(props) {
         super(props);
@@ -15,7 +14,7 @@ class PortfolioList extends Component {
     renderList() {
         return this.props.portfolio.map((business) => {
             return (
-                <div className="card" key={business.title} onClick={() => this.selectPortfolio(business.title)}>
+                <Link className="card" key={business.title} to={`/portfolio/${business.id}`} onClick={() => this.selectPortfolio(business.title)}>
                     <Card >
                         <CardTitle title={business.title} subtitle="Card subtitle" />
                         <CardText>
@@ -23,7 +22,7 @@ class PortfolioList extends Component {
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
                     </CardText>
                     </Card>
-                </div>
+                </Link>
             );
         });
     }
@@ -36,8 +35,7 @@ class PortfolioList extends Component {
             </div>
         );
     }
-    selectPortfolio(businessName)
-    {
+    selectPortfolio(businessName) {
         console.log(businessName + ' clicked');
     }
 }
@@ -48,4 +46,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(PortfolioList)
+export default connect(mapStateToProps)(Portfolios)
