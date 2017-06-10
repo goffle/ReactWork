@@ -23,7 +23,7 @@ class CompanyList extends Component {
         let raws = [];
         let index = 0;
 
-        while (companies.length) newCompanies.push(companies.splice(0, 3));
+        while (companies.length) newCompanies.push(companies.splice(0, 6));
         newCompanies.forEach((companyRow) => {
             let cells = [];
             companyRow.forEach((company) => {
@@ -37,7 +37,7 @@ class CompanyList extends Component {
 
     createCard(company) {
         return (
-            <div key={company.name} className="col-md-4" style={{ marginBottom: 32 + 'px', cursor: 'pointer' }} onClick={() => this.selectCompany(company)}>
+            <div key={company.name} className="col-md-2" style={{ marginBottom: 32 + 'px', cursor: 'pointer' }} onClick={() => this.selectCompany(company)}>
                 <Card >
                     <CardTitle title={company.name} subtitle="Card subtitle" />
                     <CardMedia
@@ -45,7 +45,7 @@ class CompanyList extends Component {
                         <img src="https://unsplash.it/200/100" />
                     </CardMedia>
                     <CardText>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.Donec vulputate interdum sollicitudin.
                 </CardText>
                 </Card>
             </div>

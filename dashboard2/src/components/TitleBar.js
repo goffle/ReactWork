@@ -1,11 +1,16 @@
 import React, { Component } from 'react'
 
-//import logo from '../../images/logo1.png'
-
 import AppBar from 'material-ui/AppBar'
 import Drawer from 'material-ui/Drawer'
 import Subheader from 'material-ui/Subheader'
 import MenuItem from 'material-ui/MenuItem'
+
+import HomeIcon from 'material-ui/svg-icons/action/home';
+import MapIcon from 'material-ui/svg-icons/action/room';
+import DirectoryIcon from 'material-ui/svg-icons/action/view-module';
+import NewsIcon from 'material-ui/svg-icons/action/description';
+import GraphIcon from 'material-ui/svg-icons/action/timeline';
+import RankIcon from 'material-ui/svg-icons/action/toc';
 
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
@@ -16,16 +21,6 @@ class TitleBar extends Component {
         super(props);
         this.state = { drawerOpen: true };
     }
-
-    /* getChildContext() {
-         return { muiTheme: getMuiTheme(baseTheme) };
-     }*/
-
-    handleToggle() {
-        this.setState({ drawerOpen: !this.state.drawerOpen });
-    }
-
-    handleClose() { this.setState({ drawerOpen: false }); }
 
     render() {
 
@@ -59,20 +54,21 @@ class TitleBar extends Component {
             },
         };
 
-        //const img = <img style={styles.img} src='https://unsplash.it/50/50'/>
+        const img = <img style={styles.img} src='https://unsplash.it/50/50' />
         return (
             <header className="header">
-                <AppBar style={styles.appBar} /*title={img}*/ onLeftIconButtonTouchTap={this.handleToggle.bind(this)} />
+                <AppBar style={styles.appBar} title={img}  />
                 <Drawer containerStyle={styles.drawer}
                     overlayStyle={styles.drawer}
-                    docked={false}
-                    open={this.state.drawerOpen}
-                    onRequestChange={(open) => this.setState({ open })}>
-
-                    <Subheader inset={false}><span style={{ width: '100%' }}><div style={styles.mainMenu}>MAIN MENU</div><div style={{ display: 'inline-block' }}><i className="fa fa-long-arrow-left fa-lg" style={{ color: '#4498c0' }} onTouchTap={this.handleClose.bind(this)} aria-hidden="true"></i></div></span></Subheader>
-                    <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><div className={css.link} to="/exports"><i className="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;DataPack Library</div></MenuItem>
-                    <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}>Trends</MenuItem>
-                    <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}>Ranks</MenuItem>
+                    docked={true}
+                    open={this.state.drawerOpen}>
+                    <Subheader inset={false}><span style={{ width: '100%' }}><div style={styles.mainMenu}>PORTFOLIO 1</div><div style={{ display: 'inline-block' }}><i className="fa fa-long-arrow-left fa-lg" style={{ color: '#4498c0' }}  aria-hidden="true"></i></div></span></Subheader>
+                    <MenuItem leftIcon={<HomeIcon />} className={css.menuItem} >Home</MenuItem>
+                    <MenuItem leftIcon={<DirectoryIcon />} className={css.menuItem} >Directory</MenuItem>
+                    <MenuItem leftIcon={<GraphIcon />} className={css.menuItem} >Graph</MenuItem>
+                    <MenuItem leftIcon={<NewsIcon />} className={css.menuItem} >News</MenuItem>
+                    <MenuItem leftIcon={<MapIcon />} className={css.menuItem} >Map</MenuItem>
+                    <MenuItem leftIcon={<RankIcon />} className={css.menuItem} >Ranks</MenuItem>
                 </Drawer>
             </header>
         )
