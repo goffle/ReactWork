@@ -13,9 +13,9 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 
 import AppBar from './AppBar'
-import Portfolios from '../containers/Portfolios'
+import PortfolioList from '../containers/Portfolio-list'
 import Portfolio from '../components/Portfolio'
-
+import NewPortfolio from '../components/NewPortfolio'
 
 
 //https://stackoverflow.com/questions/42140318/material-ui-drawer-persistent-state
@@ -31,7 +31,8 @@ class Application extends Component {
                         <AppBar />
                         <Switch>
                             <Route path="/portfolio" component={Portfolio} />
-                            <Route path="/" component={Portfolios} />
+                            <Route path="/newportfolio" component={NewPortfolio} />
+                            <Route path="/" component={PortfolioList} />
                         </Switch>
                     </div>
                 </BrowserRouter>

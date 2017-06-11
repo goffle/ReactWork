@@ -47,12 +47,13 @@ class Menu extends Component {
                     docked={true}
                     open={this.state.drawerOpen}>
                     <Subheader inset={false}><span style={{ width: '100%' }}><div style={styles.mainMenu}>PORTFOLIO 1</div><div style={{ display: 'inline-block' }}><i className="fa fa-long-arrow-left fa-lg" style={{ color: '#4498c0' }}  aria-hidden="true"></i></div></span></Subheader>
-                    <MenuItem leftIcon={<HomeIcon />} className={css.menuItem}><Link className={css.link} to="/portfolio/0">Home</Link></MenuItem>
-                    <MenuItem leftIcon={<DirectoryIcon />} className={css.menuItem}> <Link className={css.link} to="/portfolio/1">Directory</Link></MenuItem>
-                    <MenuItem leftIcon={<GraphIcon />} className={css.menuItem} >Graph</MenuItem>
-                    <MenuItem leftIcon={<NewsIcon />} className={css.menuItem} >News</MenuItem>
-                    <MenuItem leftIcon={<MapIcon />} className={css.menuItem} >Map</MenuItem>
-                    <MenuItem leftIcon={<RankIcon />} className={css.menuItem} >Ranks</MenuItem>
+                    
+                    <MenuItem leftIcon={<HomeIcon />} className={css.menuItem}><Link className={css.link} to="/portfolio/:id">Home</Link></MenuItem>
+                    <MenuItem leftIcon={<DirectoryIcon />} className={css.menuItem}> <Link className={css.link} to="/portfolio/directory">Directory</Link></MenuItem>
+                    <MenuItem leftIcon={<GraphIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/graph">Graph</Link></MenuItem>
+                    <MenuItem leftIcon={<NewsIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/news">News</Link></MenuItem>
+                    <MenuItem leftIcon={<MapIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/map">Map</Link></MenuItem>
+                    <MenuItem leftIcon={<RankIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/ranks">Ranks</Link></MenuItem>
                 </Drawer>
             </header>
         )

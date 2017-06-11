@@ -1,0 +1,6 @@
+.portfolioCard
+{
+        cursor: pointer;
+        min-height: 150px;
+        text-align: center;
+}
