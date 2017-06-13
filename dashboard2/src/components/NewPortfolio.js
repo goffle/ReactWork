@@ -2,52 +2,90 @@
 
 import React, { Component, PropTypes } from 'react';
 import { Field, reduxForm } from 'redux-form';
-import { createPost } from '../actions/index';
+import { postPortfolio } from '../actions/index';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
+
+import TextField from 'material-ui/TextField'
+import RaisedButton from 'material-ui/RaisedButton';
 
 
-const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
-    <div className="form-group">
-        <label>{label}</label>
-        <input {...input} className="form-control" type={type} />
-        {touched && (error && <div className="text-help">{error}</div>)}
-    </div>
+const renderNameTextField = ({ input, label, meta: { touched, error }, ...custom }) => (
+    <TextField hintText={label}
+        floatingLabelText={label}
+        errorText={touched && error}
+        {...input}
+        {...custom}
+        onChange={() => { }}
+        fullWidth={true}
+    />
 )
+
+const renderDescriptionTextField = ({ input, label, meta: { touched, error }, ...custom }) => {
+    
+    debugger;
+    return (
+    <TextField hintText={label}
+        floatingLabelText={label}
+        errorText={touched && error}
+        {...input}
+        {...custom}
+        rows={3}
+        fullWidth={true}
+        onChange={() => { }}
+    />
+)}
+
+
 class PostsNew extends Component {
-    static contextTypes = {
-        router: PropTypes.object
-    };
+
     onSubmit(props) {
-        this.props.createPost(props).then(() => { this.context.router.push('/'); });
+        console.log("hey", props)
+        this.props.postPortfolio(props).then(() => {
+            this.props.history.push('/');
+        });
     }
     render() {
         const { handleSubmit } = this.props;
         return (
             <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
-                <h3>Create A New Post</h3>
-                <Field label="Title" name="title" type="text" component={renderField} />
-                <Field label="Categories" name="categories" type="text" component={renderField} />
-                <div className="form-group">
-                    <label>Content</label>
-                    <Field name="content" className="form-control" component="textarea" />
+                <div className="new-portfolio-div">
+                    <h3>Create A New Portfolio</h3>
+                    <Field label="Name" name="Name" component={renderNameTextField} type="text"/>
+                    <br />
+                    <Field label="Description" name="Description" component={renderDescriptionTextField} type="text"/>
+                    <br />
+                    <div>
+                        <RaisedButton type="submit" className="btn btn-primary">Submit</RaisedButton>
+                        <RaisedButton className="btn btn-danger"><Link to="/">Cancel</Link></RaisedButton>
+                    </div>
                 </div>
-                <button type="submit" className="btn btn-primary">Submit</button>
-                <Link to="/" className="btn btn-danger" >Cancel</Link>
             </form>
         );
     }
 }
-function validate(values) {
-    const errors = {};
-    if (!values.title) {
-        errors.title = 'Title cannot be empty';
-    }
-    return errors;
+
+const validate = values => {
+    const errors = {}
+    const requiredFields = ['Name', 'Description']
+    requiredFields.forEach(field => {
+        if (!values[field]) {
+            errors[field] = 'Required'
+        }
+    })
+    /*
+    if (values.email && !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+      errors.email = 'Invalid email address'
+    }*/
+    console.log(errors);
+    return errors
 }
 
 
-export default connect(null, { createPost })(reduxForm({
-    form: 'PostsNewForm',
-    validate
-})(PostsNew));
+
+
+export default connect(null, { postPortfolio })(
+    reduxForm({
+        form: 'PostsNewForm',
+        validate
+    })(PostsNew));
