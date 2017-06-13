@@ -1,62 +1,53 @@
-import React, { Component, PropTypes } from 'react'
-import TextField from 'material-ui/TextField';
-import RaisedButton from 'material-ui/RaisedButton';
-import { reduxForm, Field } from 'redux-form'
+//posts_new.js file
 
-//http://www.material-ui.com/#/components/text-field
-//http://redux-form.com/6.5.0/examples/material-ui/
+import React, { Component, PropTypes } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import { createPost } from '../actions/index';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 
-const validate = values => {
-  const errors = {}
-  const requiredFields = [ 'name', 'desccription' ]
-  requiredFields.forEach(field => {
-    if (!values[ field ]) {
-      errors[ field ] = 'Required'
+const renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    <div className="form-group">
+        <label>{label}</label>
+        <input {...input} className="form-control" type={type} />
+        {touched && (error && <div className="text-help">{error}</div>)}
+    </div>
+)
+class PostsNew extends Component {
+    static contextTypes = {
+        router: PropTypes.object
+    };
+    onSubmit(props) {
+        this.props.createPost(props).then(() => { this.context.router.push('/'); });
     }
-  })
-  return errors
-}
-
-
-
-
-class NewPortfolio extends Component {
-   
-    handleFormSubmit({ name, description }) {
-        console.log(name, description);
-    }
-
     render() {
-        const { handleSubmit, fields: { name, description } } = this.props;
-
+        const { handleSubmit } = this.props;
         return (
-            <form onSubmit={handleSubmit}>
-                <div className="new-portfolio-div">
-                    <TextField {...name}
-                        hintText="Name of your portoflio"
-                        name="name"
-                        fullWidth={true} />
-                    <br />
-                    <TextField {...description}
-                        hintText="Description of your portfolio"
-                        name="description"
-                        multiLine={true}
-                        rows={4}
-                        rowsMax={4}
-                        fullWidth={true} />
-                    <br /><br /><br /><br />
-                    <RaisedButton
-                        type="submit"
-                        label="Validate"
-                        primary={true} />
+            <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
+                <h3>Create A New Post</h3>
+                <Field label="Title" name="title" type="text" component={renderField} />
+                <Field label="Categories" name="categories" type="text" component={renderField} />
+                <div className="form-group">
+                    <label>Content</label>
+                    <Field name="content" className="form-control" component="textarea" />
                 </div>
+                <button type="submit" className="btn btn-primary">Submit</button>
+                <Link to="/" className="btn btn-danger" >Cancel</Link>
             </form>
-        )
+        );
     }
 }
+function validate(values) {
+    const errors = {};
+    if (!values.title) {
+        errors.title = 'Title cannot be empty';
+    }
+    return errors;
+}
 
-export default reduxForm({
-    form: 'NewPortfolio',
-    validate,
-})(NewPortfolio)
+
+export default connect(null, { createPost })(reduxForm({
+    form: 'PostsNewForm',
+    validate
+})(PostsNew));
