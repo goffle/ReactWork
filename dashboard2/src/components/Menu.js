@@ -48,7 +48,7 @@ class Menu extends Component {
                     open={this.state.drawerOpen}>
                     <Subheader inset={false}><span style={{ width: '100%' }}><div style={styles.mainMenu}>PORTFOLIO 1</div><div style={{ display: 'inline-block' }}><i className="fa fa-long-arrow-left fa-lg" style={{ color: '#4498c0' }}  aria-hidden="true"></i></div></span></Subheader>
                     
-                    <MenuItem leftIcon={<HomeIcon />} className={css.menuItem}><Link className={css.link} to="/portfolio/:id">Home</Link></MenuItem>
+                    <MenuItem leftIcon={<HomeIcon />} className={css.menuItem}><Link className="link" to="/portfolio/:id">Home</Link></MenuItem>
                     <MenuItem leftIcon={<DirectoryIcon />} className={css.menuItem}> <Link className={css.link} to="/portfolio/directory">Directory</Link></MenuItem>
                     <MenuItem leftIcon={<GraphIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/graph">Graph</Link></MenuItem>
                     <MenuItem leftIcon={<NewsIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/news">News</Link></MenuItem>
@@ -66,18 +66,3 @@ Menu.childContextTypes = {
 
 export default Menu
 
-
-/*           <Drawer containerStyle={styles.drawer}
-                    overlayStyle={styles.drawer}
-                    docked={false}
-                    open={this.state.drawerOpen}
-                    onRequestChange={(open) => this.setState({open})}>
-                <Subheader inset={false}><span style={{width:'100%'}}><div style={styles.mainMenu}>MAIN MENU</div><div style={{display:'inline-block'}}><i className="fa fa-long-arrow-left fa-lg" style={{color: '#4498c0'}} onTouchTap={this.handleClose.bind(this)} aria-hidden="true"></i></div></span></Subheader>
-                <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><IndexLink className={css.link} activeClassName={css.active} onlyActiveOnIndex={true} to="/exports"><i className="fa fa-book" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;DataPack Library</IndexLink></MenuItem>
-                <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><Link className={css.link} activeClassName={css.active} to="/create" ><i className="fa fa-plus-square" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Create Datapack</Link></MenuItem>
-                <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><Link className={css.link} activeClassName={css.active} to="/about" ><i className="fa fa-info-circle" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;About EventKit</Link></MenuItem>
-                <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><Link className={css.link} activeClassName={css.active} to="/account" ><i className="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Account Settings</Link></MenuItem>
-                <MenuItem className={css.menuItem} onTouchTap={this.handleClose.bind(this)}><Link className={css.link} activeClassName={css.active} to="/logout" ><i className="fa fa-sign-out" aria-hidden="true"></i>&nbsp;&nbsp;&nbsp;Log Out</Link></MenuItem>
-            </Drawer>
-
-            */

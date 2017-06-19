@@ -16,14 +16,13 @@ const renderNameTextField = ({ input, label, meta: { touched, error }, ...custom
         errorText={touched && error}
         {...input}
         {...custom}
-        onChange={() => { }}
         fullWidth={true}
     />
 )
 
 const renderDescriptionTextField = ({ input, label, meta: { touched, error }, ...custom }) => {
     
-    debugger;
+
     return (
     <TextField hintText={label}
         floatingLabelText={label}
@@ -32,7 +31,7 @@ const renderDescriptionTextField = ({ input, label, meta: { touched, error }, ..
         {...custom}
         rows={3}
         fullWidth={true}
-        onChange={() => { }}
+
     />
 )}
 
@@ -56,8 +55,8 @@ class PostsNew extends Component {
                     <Field label="Description" name="Description" component={renderDescriptionTextField} type="text"/>
                     <br />
                     <div>
-                        <RaisedButton type="submit" className="btn btn-primary">Submit</RaisedButton>
-                        <RaisedButton className="btn btn-danger"><Link to="/">Cancel</Link></RaisedButton>
+                        <RaisedButton backgroundColor="#ffffff00" type="submit" className="new-portfolio-btn" primary={true} label="Save" />
+                        <RaisedButton type="submit" className="new-portfolio-btn" secondary={true} label="Cancel" />
                     </div>
                 </div>
             </form>
