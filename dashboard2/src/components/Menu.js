@@ -16,6 +16,8 @@ import { BrowserRouter as Router, Route, Link, IndexLink } from 'react-router-do
 
 import css from '../../style/Menu.css'
 
+//I need to check css good practices
+
 class Menu extends Component {
     constructor(props) {
         super(props);
