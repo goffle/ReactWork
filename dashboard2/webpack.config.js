@@ -16,11 +16,15 @@ module.exports = {
       }
     }, {
       test: /\.css$/,
-      loader: 'css-loader',
+      C: 'css-loader',
       query: {
         modules: true,
         localIdentName: '[name]__[local]___[hash:base64:5]'
       }
+    },
+    {
+      test: /\.json$/,
+      loader: 'json-loader'
     }]
   },
   resolve: {

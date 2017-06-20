@@ -56,6 +56,7 @@ class Menu extends Component {
                     <MenuItem leftIcon={<NewsIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/news">News</Link></MenuItem>
                     <MenuItem leftIcon={<MapIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/map">Map</Link></MenuItem>
                     <MenuItem leftIcon={<RankIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/ranks">Ranks</Link></MenuItem>
+                    <MenuItem leftIcon={<RankIcon />} className={css.menuItem} > <Link className={css.link} to="/portfolio/sortdata">Work</Link></MenuItem>
                 </Drawer>
             </header>
         )

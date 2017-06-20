@@ -56,7 +56,7 @@ class PostsNew extends Component {
                     <br />
                     <div>
                         <RaisedButton backgroundColor="#ffffff00" type="submit" className="new-portfolio-btn" primary={true} label="Save" />
-                        <RaisedButton type="submit" className="new-portfolio-btn" secondary={true} label="Cancel" />
+                        <RaisedButton type="submit" className="new-portfolio-btn" secondary={true} label="Cancel" linkButton={true} href="/"/>
                     </div>
                 </div>
             </form>

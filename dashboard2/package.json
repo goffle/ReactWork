@@ -20,6 +20,7 @@
     "chai-jquery": "^2.0.0",
     "jquery": "^3.2.1",
     "jsdom": "^11.0.0",
+    "json-loader": "^0.5.4",
     "mocha": "^3.4.2",
     "react-addons-test-utils": "^15.5.1",
     "webpack": "^1.12.9",
@@ -40,6 +41,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.0.4",
     "redux-form": "^6.8.0",
-    "redux-promise": "^0.5.3"
+    "redux-promise": "^0.5.3",
+    "twitter": "^1.7.1"
   }
 }
