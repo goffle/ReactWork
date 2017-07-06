@@ -1,0 +1,32 @@
+.root {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    }
+
+.body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0e77d4;
+}
+
+.content
+{
+    position: absolute;
+    top: 64px;
+    left: 200px;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+}
+
+.btn
+{
+    padding: 20px;
+}
+
+.container
+{
+    padding-top: 50px;
+}
